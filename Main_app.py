@@ -1,19 +1,20 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[7]:
+# In[12]:
 
 
 import streamlit as  st #Webアプリ作成の為
 import pandas as pd
 import io
 import xlsxwriter
+import openpyxl
 
 st.title('Pythonアプリケーション')
 st.caption('これはPythonプログラムで作成されたWebアプリです')
 
 
-# In[8]:
+# In[13]:
 
 
 #◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆
@@ -38,7 +39,7 @@ if submit_btn_xlsx:
         st.download_button(label='エクセルダウンロード', data=xlsx_dl, file_name='洋日配サマリ集計後.xlsx', mime='application/vnd.ms-excel')
 
 
-# In[9]:
+# In[14]:
 
 
 #◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆
@@ -54,6 +55,12 @@ if submit_btn_csv:
     #出力するデータが表示されたら、ダウンロードボタンが出てくる
     csv_dl = _df_csv.to_csv()
     st.download_button(label='ＣＳＶダウンロード', data=csv_dl, file_name='洋日配サマリ集計後.csv')
+
+
+# In[ ]:
+
+
+
 
 
 # In[ ]:
