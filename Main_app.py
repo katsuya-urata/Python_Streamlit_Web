@@ -19,14 +19,31 @@ st.caption('これはPythonプログラムで作成されたWebアプリです')
 #xlsxデータの処理用
 #◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆
 name_xlsx = st.text('洋日配サマリー表集約処理_xlsx')
-#uploaded_files_xlsx = st.file_uploader('ファイルアップロード', type='xlsx')
-uploaded_files_xlsx = st.file_uploader('ファイルアップロード')
+uploaded_files_xlsx = st.file_uploader('ファイルアップロード', type='xlsx')
 
 submit_btn_xlsx = st.button('xlsx処理実行')
 #ボタンが押されたら処理を実行する
 if submit_btn_xlsx:
     _df_xlsx = pd.read_excel(uploaded_files_xlsx)
     _df_xlsx
+
+
+# In[6]:
+
+
+#◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆
+#CSVデータの処理用
+#◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆
+name_csv = st.text('洋日配サマリー表集約処理_CSV')
+uploaded_files_csv = st.file_uploader('ファイルアップロード', type='csv')
+submit_btn_csv = st.button('CSV処理実行')
+#ボタンが押されたら処理を実行する
+if submit_btn_csv:
+    _df_csv = pd.read_csv(uploaded_files_csv, encoding='shift-jis')
+    _df_csv
+    #出力するデータが表示されたら、ダウンロードボタンが出てくる
+    csv_dl = _df_csv.to_csv()
+    st.download_button(label='ＣＳＶダウンロード', data=csv_dl, file_name='洋日配サマリ集計後.csv')
 
 
 # In[ ]:
