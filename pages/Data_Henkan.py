@@ -54,12 +54,6 @@ if submit_btn_csv:
     st.download_button(label='ＣＳＶダウンロード', data=csv_dl, file_name='洋日配サマリ集計後.csv')
 
 
-# In[7]:
-
-
-pip list
-
-
 # In[ ]:
 
 
