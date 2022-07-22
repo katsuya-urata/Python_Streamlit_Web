@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[13]:
+# In[24]:
 
 
 import streamlit as  st
@@ -11,7 +11,7 @@ import xlsxwriter
 import openpyxl
 
 
-# In[14]:
+# In[25]:
 
 
 #◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆
@@ -24,7 +24,9 @@ submit_btn_xlsx = st.button('xlsx処理実行')
 #ボタンが押されたら処理を実行する
 if submit_btn_xlsx:
     _df_xlsx = pd.read_excel(uploaded_files_xlsx)
-    st.dataframe(_df_xlsx)
+    _df_xlsx.to_feather('_df_xlsx.feather')
+    
+    #st.dataframe(_df_xlsx)
     #エクセルでの書き出しはかなり特殊なようでこのような対応が必要
     xlsx_dl = io.BytesIO()
     
@@ -35,7 +37,7 @@ if submit_btn_xlsx:
         st.download_button(label='エクセルダウンロード', data=xlsx_dl, file_name='洋日配サマリ集計後.xlsx', mime='application/vnd.ms-excel')
 
 
-# In[15]:
+# In[26]:
 
 
 #◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆
@@ -52,6 +54,18 @@ if submit_btn_csv:
     #出力するデータが表示されたら、ダウンロードボタンが出てくる
     csv_dl = _df_csv.to_csv()
     st.download_button(label='ＣＳＶダウンロード', data=csv_dl, file_name='洋日配サマリ集計後.csv')
+
+
+# In[19]:
+
+
+fff = pd.read_excel('C:\\Users\\katsu\\Desktop\\（九州）商品一覧冷食・アイス220630.xlsx')
+
+
+# In[22]:
+
+
+fff.info()
 
 
 # In[ ]:
