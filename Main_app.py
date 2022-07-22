@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[4]:
+# In[2]:
 
 
 import streamlit as  st #Webアプリ作成の為
@@ -12,7 +12,7 @@ st.title('Pythonアプリケーション')
 st.caption('これはPythonプログラムで作成されたWebアプリです')
 
 
-# In[5]:
+# In[3]:
 
 
 #◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆
@@ -37,7 +37,7 @@ if submit_btn_xlsx:
         st.download_button(label='エクセルダウンロード', data=xlsx_dl, file_name='洋日配サマリ集計後.xlsx', mime='application/vnd.ms-excel')
 
 
-# In[6]:
+# In[4]:
 
 
 #◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆
