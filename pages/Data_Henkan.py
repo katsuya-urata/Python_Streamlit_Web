@@ -55,21 +55,3 @@ if submit_btn_csv:
     csv_dl = _df_csv.to_csv()
     st.download_button(label='ＣＳＶダウンロード', data=csv_dl, file_name='洋日配サマリ集計後.csv')
 
-
-# In[19]:
-
-
-fff = pd.read_excel('C:\\Users\\katsu\\Desktop\\（九州）商品一覧冷食・アイス220630.xlsx')
-
-
-# In[22]:
-
-
-fff.info()
-
-
-# In[ ]:
-
-
-
-
