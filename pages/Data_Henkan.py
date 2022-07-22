@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[ ]:
+# In[3]:
 
 
 import streamlit as  st
@@ -11,7 +11,7 @@ import xlsxwriter
 import openpyxl
 
 
-# In[ ]:
+# In[4]:
 
 
 #◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆
@@ -24,7 +24,7 @@ submit_btn_xlsx = st.button('xlsx処理実行')
 #ボタンが押されたら処理を実行する
 if submit_btn_xlsx:
     _df_xlsx = pd.read_excel(uploaded_files_xlsx)
-    _df_xlsx
+    st.datafreme(_df_xlsx)
     
     #エクセルでの書き出しはかなり特殊なようでこのような対応が必要
     xlsx_dl = io.BytesIO()
@@ -36,7 +36,7 @@ if submit_btn_xlsx:
         st.download_button(label='エクセルダウンロード', data=xlsx_dl, file_name='洋日配サマリ集計後.xlsx', mime='application/vnd.ms-excel')
 
 
-# In[ ]:
+# In[6]:
 
 
 #◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆
@@ -48,8 +48,15 @@ submit_btn_csv = st.button('CSV処理実行')
 #ボタンが押されたら処理を実行する
 if submit_btn_csv:
     _df_csv = pd.read_csv(uploaded_files_csv, encoding='shift-jis')
-    _df_csv
+    st.dataframe(_df_csv)
+    
     #出力するデータが表示されたら、ダウンロードボタンが出てくる
     csv_dl = _df_csv.to_csv()
     st.download_button(label='ＣＳＶダウンロード', data=csv_dl, file_name='洋日配サマリ集計後.csv')
+
+
+# In[ ]:
+
+
+
 
