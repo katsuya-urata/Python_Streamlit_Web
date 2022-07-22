@@ -24,12 +24,10 @@ submit_btn_xlsx = st.button('xlsx処理実行')
 #ボタンが押されたら処理を実行する
 if submit_btn_xlsx:
     _df_xlsx = pd.read_excel(uploaded_files_xlsx)
-    _df_xlsx.to_feather('_df_xlsx.feather')
+    st.dataframe(_df_xlsx)
     
-    #st.dataframe(_df_xlsx)
     #エクセルでの書き出しはかなり特殊なようでこのような対応が必要
     xlsx_dl = io.BytesIO()
-    
     with pd.ExcelWriter(xlsx_dl, engine='xlsxwriter') as writer:
         _df_xlsx.to_excel(writer, sheet_name='Sheet1')
         writer.save()
