@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[69]:
+# In[4]:
 
 
 import streamlit as  st
@@ -13,7 +13,7 @@ import datetime
 import zipfile
 
 
-# In[80]:
+# In[6]:
 
 
 #◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆
@@ -49,7 +49,6 @@ if submit_btn_xlsx:
             
             #エクセルでの書き出しはかなり特殊なようでこのような対応が必要
             xlsx_dl = io.BytesIO()
-            list_file = list()
 
             #取得した取引先名をキーにデータを抽出して、エクスポートしていく
             for tori in torimei:
@@ -58,14 +57,8 @@ if submit_btn_xlsx:
                 with pd.ExcelWriter(xlsx_dl, engine='xlsxwriter') as writer:
                     df.to_excel(writer, sheet_name='Sheet1')
                     writer.save()
-                    list_file.append(tori + '_洋日配サマリ集計後.xlsx')
-                    
-            with zipfile.ZipFile('final.zip', 'w') as zipF:
-                for file in list_files:
-                    zipF.write(file, compress_type=zipfile.ZIP_DEFLATED)
-                    
-            #出力するデータが表示されたら、ダウンロードボタンが出てくる
-            #st.download_button(label='エクセルダウンロード', data=final.zip, file_name=final.zip, mime='application/vnd.ms-excel')
+                #出力するデータが表示されたら、ダウンロードボタンが出てくる
+                st.download_button(label='エクセルダウンロード', data=xlsx_dl, file_name=tori + '_洋日配サマリ.xlsx', mime='application/vnd.ms-excel')
             
         except:
             st.text('エラーが発生しました')
