@@ -24,6 +24,8 @@ submit_btn_xlsx = st.button('xlsx処理実行')
 #ボタンが押されたら処理を実行する
 if submit_btn_xlsx:
     _df_xlsx = pd.read_excel(uploaded_files_xlsx)
+    
+    #####意味がわかった#########
     _df_xlsx = _df_xlsx['JAN']
     _df_xlsx
     
