@@ -12,7 +12,7 @@ import openpyxl
 import datetime
 
 
-# In[43]:
+# In[44]:
 
 
 #◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆
@@ -46,10 +46,10 @@ if submit_btn_xlsx:
             #取引先名のユニークを取得する
             torimei = _df['取引先'].unique()
             
-            #取得した取引先名をキーにデータを抽出して、エクスポートしていく
             #エクセルでの書き出しはかなり特殊なようでこのような対応が必要
             xlsx_dl = io.BytesIO()
-            
+
+            #取得した取引先名をキーにデータを抽出して、エクスポートしていく
             for tori in torimei:
                 df = _df[_df['取引先'] == tori]
                 #データを社別に出力していく
@@ -58,6 +58,7 @@ if submit_btn_xlsx:
                     writer.save()
                     #出力するデータが表示されたら、ダウンロードボタンが出てくる
                     st.download_button(label='エクセルダウンロード', data=xlsx_dl, file_name=tori + '_洋日配サマリ集計後.xlsx', mime='application/vnd.ms-excel')
+            
         except:
             st.text('エラーが発生しました')
             pass
