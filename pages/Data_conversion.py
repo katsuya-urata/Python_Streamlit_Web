@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[8]:
+# In[69]:
 
 
 import streamlit as  st
@@ -10,9 +10,10 @@ import io
 import xlsxwriter
 import openpyxl
 import datetime
+import zipfile
 
 
-# In[44]:
+# In[80]:
 
 
 #◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆
@@ -48,6 +49,7 @@ if submit_btn_xlsx:
             
             #エクセルでの書き出しはかなり特殊なようでこのような対応が必要
             xlsx_dl = io.BytesIO()
+            list_file = list()
 
             #取得した取引先名をキーにデータを抽出して、エクスポートしていく
             for tori in torimei:
@@ -56,8 +58,14 @@ if submit_btn_xlsx:
                 with pd.ExcelWriter(xlsx_dl, engine='xlsxwriter') as writer:
                     df.to_excel(writer, sheet_name='Sheet1')
                     writer.save()
-                    #出力するデータが表示されたら、ダウンロードボタンが出てくる
-                    st.download_button(label='エクセルダウンロード', data=xlsx_dl, file_name=tori + '_洋日配サマリ集計後.xlsx', mime='application/vnd.ms-excel')
+                    list_file.append(tori + '_洋日配サマリ集計後.xlsx')
+                    
+            with zipfile.ZipFile('final.zip', 'w') as zipF:
+                for file in list_files:
+                    zipF.write(file, compress_type=zipfile.ZIP_DEFLATED)
+                    
+            #出力するデータが表示されたら、ダウンロードボタンが出てくる
+            #st.download_button(label='エクセルダウンロード', data=final.zip, file_name=final.zip, mime='application/vnd.ms-excel')
             
         except:
             st.text('エラーが発生しました')
@@ -83,7 +91,7 @@ if submit_btn_xlsx:
 #    st.download_button(label='ＣＳＶダウンロード', data=csv_dl, file_name='洋日配サマリ集計後.csv')
 
 
-# In[40]:
+# In[66]:
 
 
 # uploaded_files_xlsx = 'C:\\Users\\katsu\\Desktop\\2022_08メーカー洋日配販売計画書1（素案）.xlsx'
@@ -101,9 +109,21 @@ if submit_btn_xlsx:
 #             #取得した取引先名をキーにデータを抽出して、エクスポートしていく
 #             #エクセルでの書き出しはかなり特殊なようでこのような対応が必要
 # xlsx_dl = io.BytesIO()
+# list_file = ['test']
             
 # for tori in trimei:
 #     df = _df[_df['取引先'] == tori]
+#     st = tori + 'test.xlsx'
+#     list_file.append(st)
+
+# print(list_file)
+    
+
+
+# In[62]:
+
+
+
 
 
 # In[ ]:
