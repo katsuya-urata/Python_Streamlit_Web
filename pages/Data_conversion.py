@@ -13,7 +13,7 @@ import datetime
 import zipfile
 
 
-# In[4]:
+# In[6]:
 
 
 #◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆
@@ -46,7 +46,7 @@ if submit_btn_xlsx:
             
             #取引先名のユニークを取得する
             torimei = _df['取引先'].unique()
-            torisyousai = df.groupby(['取引先']).count()
+            torisyousai = _df.groupby(['取引先']).count()
             
             #エクセルでの書き出しはかなり特殊なようでこのような対応が必要
             xlsx_dl = io.BytesIO()
@@ -115,7 +115,7 @@ if submit_btn_xlsx:
     
 
 
-# In[62]:
+# In[5]:
 
 
 
