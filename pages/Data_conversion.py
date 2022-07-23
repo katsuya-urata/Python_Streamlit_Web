@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[4]:
+# In[2]:
 
 
 import streamlit as  st
@@ -13,7 +13,7 @@ import datetime
 import zipfile
 
 
-# In[6]:
+# In[4]:
 
 
 #◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆
@@ -46,6 +46,7 @@ if submit_btn_xlsx:
             
             #取引先名のユニークを取得する
             torimei = _df['取引先'].unique()
+            torisyousai = df.groupby(['取引先']).count()
             
             #エクセルでの書き出しはかなり特殊なようでこのような対応が必要
             xlsx_dl = io.BytesIO()
@@ -58,8 +59,9 @@ if submit_btn_xlsx:
                     df.to_excel(writer, sheet_name='Sheet1')
                     writer.save()
                 #出力するデータが表示されたら、ダウンロードボタンが出てくる
+                st.text(torisyousai)
                 st.download_button(label='エクセルダウンロード', data=xlsx_dl, file_name=tori + '_洋日配サマリ.xlsx', mime='application/vnd.ms-excel')
-            
+                
         except:
             st.text('エラーが発生しました')
             pass
